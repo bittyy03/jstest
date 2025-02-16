@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>줄 단위 .txt 읽기</title>
+</head>
+<body>
+
+    <h2>TXT 파일 내용 (줄 단위 출력)</h2>
+    <ul id="output"></ul>
+
+    <script>
+        fetch('data.txt')  // 'data.txt' 파일 불러오기
+            .then(response => response.text())  // 텍스트로 변환
+            .then(data => {
+                let lines = data.split("\n");  // 줄바꿈 기준으로 나누기
+                let output = document.getElementById('output');
+
+                lines.forEach(line => {
+                    let li = document.createElement('li');  // <li> 요소 생성
+                    li.textContent = line;  // 한 줄씩 추가
+                    output.appendChild(li);
+                });
+            })
+            .catch(error => console.error('파일을 불러오는 중 오류 발생:', error));
+    </script>
+
+</body>
+</html>
